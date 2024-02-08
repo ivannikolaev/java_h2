@@ -1,0 +1,33 @@
+version: '3.2'
+
+services:
+  postgres:
+    image: postgres:14
+    hostname: postgres
+    container_name: postgres
+    user: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: contactbook
+      PGDATA: /var/lib/postgresql/data/pgdata
+    healthcheck:
+      test: pg_isready
+      interval: 5s
+      timeout: 10s
+      retries: 120
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data/pgdata
+
+  contactbook:
+    image: contactbook
+    hostname: contactbook
+    container_name: contactbook
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+
+

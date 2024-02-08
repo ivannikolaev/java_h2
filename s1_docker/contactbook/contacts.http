@@ -1,0 +1,15 @@
+###
+POST http://localhost:8080/contacts
+Content-Type: application/json
+
+{
+  "number": "test",
+  "name": "test"
+}
+
+###
+GET http://localhost:8080/contacts
+
+###
+GET http://localhost:8080/contacts/search/findByName?name=test
+
