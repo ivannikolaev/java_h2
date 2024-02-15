@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:notes
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+
+note:
+  maxLength: 100

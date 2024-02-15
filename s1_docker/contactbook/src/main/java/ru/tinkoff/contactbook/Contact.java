@@ -12,7 +12,7 @@ public class Contact {
     private long id;
     private String number;
     private String name;
-
+//
     public String getName() {
         return name;
     }

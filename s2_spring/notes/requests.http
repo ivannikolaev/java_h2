@@ -1,0 +1,50 @@
+###
+GET http://localhost:8080/notes
+Authorization: Basic John 123
+Accept: application/json
+
+###
+POST http://localhost:8080/notes
+Authorization: Basic John 123
+Content-Type: application/json
+
+{
+  "text": "My first note"
+}
+
+###
+POST http://localhost:8080/notes
+Authorization: Basic John 123
+Content-Type: application/json
+
+{
+  "text": "My second note"
+}
+
+###
+POST http://localhost:8080/notes
+Authorization: Basic John 123
+Content-Type: application/json
+
+{
+  "text": "My third note and I'm mentioning @Jill here"
+}
+
+###
+GET http://localhost:8080/notes/mentioned
+Authorization: Basic Jill 123
+Accept: application/json
+
+
+
+###
+POST http://localhost:8080/notes
+Authorization: Basic John 123
+Content-Type: application/json
+
+{
+  "text": "Very long long long long long long long long long long long long long long long long long long long long long long long long long long long long note"
+}
+
+
+
