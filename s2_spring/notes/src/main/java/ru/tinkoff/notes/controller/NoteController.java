@@ -1,5 +1,11 @@
 package ru.tinkoff.notes.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import jakarta.validation.Validator;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +23,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@SecurityRequirement(name = "basic")
 public class NoteController {
 
     private final NoteService noteService;
@@ -29,6 +36,13 @@ public class NoteController {
     }
 
     @PostMapping("/notes")
+    @Operation(summary = "Create note")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Created note",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = CreateNoteRequest.class))}),
+            @ApiResponse(responseCode = "400", description = "Invalid note length",
+                    content = @Content)})
     Note createNote(Principal principal, @Valid @RequestBody CreateNoteRequest createNoteRequest) {
 //        Set<ConstraintViolation<CreateNoteRequest>> violations = validator.validate(createNoteRequest);
 //        if (!violations.isEmpty()) {

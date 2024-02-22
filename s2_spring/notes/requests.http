@@ -56,5 +56,8 @@ Content-Type: application/json
   "text": "too short"
 }
 
+###
+GET http://localhost:8080/v3/api-docs
+
 
 

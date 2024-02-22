@@ -18,7 +18,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests((customizer) -> customizer.anyRequest().authenticated())
+                .authorizeHttpRequests((customizer) -> customizer
+                        .requestMatchers("/notes").authenticated()
+                        .anyRequest().permitAll()
+                )
                 .userDetailsService(userDetailsService)
                 .httpBasic(Customizer.withDefaults());
 
