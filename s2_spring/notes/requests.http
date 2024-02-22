@@ -47,4 +47,14 @@ Content-Type: application/json
 }
 
 
+###
+POST http://localhost:8080/notes
+Authorization: Basic John 123
+Content-Type: application/json
+
+{
+  "text": "too short"
+}
+
+
 

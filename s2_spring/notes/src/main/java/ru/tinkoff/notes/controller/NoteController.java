@@ -1,12 +1,12 @@
 package ru.tinkoff.notes.controller;
 
+import jakarta.validation.Valid;
+import jakarta.validation.Validator;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 import ru.tinkoff.notes.config.NoteProperties;
 import ru.tinkoff.notes.controller.dto.CreateNoteRequest;
 import ru.tinkoff.notes.repository.dto.Note;
@@ -21,6 +21,7 @@ public class NoteController {
 
     private final NoteService noteService;
     private final NoteProperties noteProperties;
+    private final Validator validator;
 
     @GetMapping("/notes")
     List<Note> myNotes(Principal principal) {
@@ -28,10 +29,14 @@ public class NoteController {
     }
 
     @PostMapping("/notes")
-    Note createNote(Principal principal, @RequestBody CreateNoteRequest createNoteRequest) {
-        if (createNoteRequest.text().length() > noteProperties.maxLength()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Text is too long");
-        }
+    Note createNote(Principal principal, @Valid @RequestBody CreateNoteRequest createNoteRequest) {
+//        Set<ConstraintViolation<CreateNoteRequest>> violations = validator.validate(createNoteRequest);
+//        if (!violations.isEmpty()) {
+//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, violations.toString());
+//        }
+//        if (createNoteRequest.text().length() > noteProperties.maxLength()) {
+//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Text is too long");
+//        }
         return noteService.createNote(principal.getName(), createNoteRequest.text());
     }
 
@@ -39,4 +44,5 @@ public class NoteController {
     List<Note> myMentions(Principal principal) {
         return noteService.getAuthorMentions(principal.getName());
     }
+
 }

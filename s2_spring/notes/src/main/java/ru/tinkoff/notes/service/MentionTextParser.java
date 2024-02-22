@@ -1,5 +1,6 @@
 package ru.tinkoff.notes.service;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Component
+@Primary
 public class MentionTextParser implements TextParser {
     private final Pattern MENTION_PATTERN = Pattern.compile("@\\w+");
     public List<String> parse(String text) {
