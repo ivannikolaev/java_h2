@@ -1,0 +1,78 @@
+openapi: 3.0.2
+info:
+  title: Author API
+  description: API for managing authors
+  version: 0.1.0
+paths:
+  /author:
+    post:
+      operationId: createAuthor
+      summary: Creates a new author
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - email
+                - password
+              properties:
+                name:
+                  type: string
+                  minLength: 3
+                  maxLength: 25
+                  example: John
+                email:
+                  type: string
+                  format: email
+                  example: john@mail.com
+                password:
+                  type: string
+                  minLength: 3
+                  maxLength: 25
+                  example: 123
+      responses:
+        '201':
+          description: Author created successfully.
+        '409':
+          description: An author with the specified name already exists.
+        default:
+          description: Unexpected error
+  /author/{name}:
+    get:
+      operationId: getAuthor
+      summary: Returns an author
+      parameters:
+        - name: name
+          in: path
+          required: true
+          description: The name of the author to return
+          schema:
+            type: string
+            minLength: 3
+            maxLength: 25
+      responses:
+        '200':
+          description: An author object.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - name
+                  - email
+                properties:
+                  name:
+                    type: string
+                    example: John
+                  email:
+                    type: string
+                    example: john@mail.com
+        '400':
+          description: The specified author name is invalid.
+        '404':
+          description: An author with the specified name was not found.
+        default:
+          description: Unexpected error

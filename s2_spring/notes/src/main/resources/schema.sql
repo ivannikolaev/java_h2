@@ -1,7 +1,8 @@
 CREATE TABLE author
 (
     name     VARCHAR(20) NOT NULL PRIMARY KEY,
-    password VARCHAR(20) NOT NULL
+    password VARCHAR(20) NOT NULL,
+    email    VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE note

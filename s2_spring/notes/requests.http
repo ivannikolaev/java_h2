@@ -59,5 +59,28 @@ Content-Type: application/json
 ###
 GET http://localhost:8080/v3/api-docs
 
+###
+GET http://localhost:8080/author/Jill1
+Accept: application/json
+
+###
+POST http://localhost:8080/author
+Content-Type: application/json
+
+{
+  "name": "Jill",
+  "email": "jill@mail.com",
+  "password": "123"
+}
+
+###
+POST http://localhost:8080/author
+Content-Type: application/json
+
+{
+  "name": "Bob",
+  "email": "bob@mail.com",
+  "password": "123"
+}
 
 
