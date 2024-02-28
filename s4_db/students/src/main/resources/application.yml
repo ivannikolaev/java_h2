@@ -1,0 +1,10 @@
+server:
+  port: 8080
+
+spring:
+  liquibase:
+    change-log: liquibase/master.xml
+  datasource:
+    url: jdbc:postgresql://localhost:5432/students
+    username: postgres
+    password: postgres

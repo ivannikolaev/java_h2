@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.21.xsd">
+    <changeSet id="tag_1" author="some_user">
+        <tagDatabase tag="tag_1"/>
+    </changeSet>
+    <changeSet id="init_tables" author="some_user">
+        <sqlFile path="sql/init_tables.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+<!--    <changeSet id="fix_model" author="some_user">-->
+<!--        <sqlFile path="sql/fix_model.sql" relativeToChangelogFile="true"/>-->
+<!--    </changeSet>-->
+</databaseChangeLog>
