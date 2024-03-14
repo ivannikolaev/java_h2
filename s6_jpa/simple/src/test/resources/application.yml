@@ -1,0 +1,20 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+
+  datasource:
+    url: jdbc:tc:postgresql:12:///databasename?TC_DAEMON=true
+    username: postgres
+    password: password
+    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+
+  liquibase:
+    change-log: classpath:liquibase/xml/changelog-master.xml
+    enabled: true

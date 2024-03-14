@@ -1,0 +1,43 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="CRS-1_add_post_sequence" author="m.gabrielyan">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <sequenceExists sequenceName="post_seq"/>
+            </not>
+        </preConditions>
+
+        <createSequence sequenceName="post_seq" incrementBy="1" cacheSize="1" startValue="1"/>
+    </changeSet>
+
+    <changeSet id="CRS-1_add_post_table" author="m.gabrielyan">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="POST"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="POST">
+            <column name="id" type="BIGINT" defaultValueSequenceNext="post_seq">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="post__id_idx"/>
+            </column>
+            <column name="title" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" defaultValueComputed="CURRENT_TIMESTAMP"
+                    type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_date" defaultValueComputed="CURRENT_TIMESTAMP"
+                    type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="INTEGER" defaultValue="1">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,49 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="CRS-2_add_image_sequence" author="m.gabrielyan">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <sequenceExists sequenceName="IMAGE_SEQ"/>
+            </not>
+        </preConditions>
+
+        <createSequence sequenceName="IMAGE_SEQ" incrementBy="1" cacheSize="1" startValue="1"/>
+    </changeSet>
+
+    <changeSet id="CRS-2_add_image_table" author="m.gabrielyan">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="IMAGE"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="IMAGE">
+            <column name="id" type="BIGINT" defaultValueSequenceNext="IMAGE_SEQ">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="image__id_idx"/>
+            </column>
+            <column name="url" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="post_id" type="BIGINT">
+                <constraints nullable="false"
+                             referencedTableName="POST"
+                             referencedColumnNames="ID"
+                             foreignKeyName="POST__POST_ID"/>
+            </column>
+            <column name="created_date" defaultValueComputed="CURRENT_TIMESTAMP"
+                    type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_date" defaultValueComputed="CURRENT_TIMESTAMP"
+                    type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="INTEGER" defaultValue="1">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
