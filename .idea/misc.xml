@@ -8,6 +8,7 @@
         <option value="$PROJECT_DIR$/s2_spring/notes/pom.xml" />
         <option value="$PROJECT_DIR$/s4_db/students/pom.xml" />
         <option value="$PROJECT_DIR$/s6_jpa/simple/pom.xml" />
+        <option value="$PROJECT_DIR$/s7_kafka/messages/pom.xml" />
       </list>
     </option>
   </component>

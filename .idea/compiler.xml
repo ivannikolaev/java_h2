@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="students" />
+        <module name="messages" />
         <module name="simple" />
         <module name="notes" />
         <module name="contactbook" />
@@ -17,6 +18,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="contactbook" options="-parameters" />
+      <module name="messages" options="-parameters" />
       <module name="notes" options="-parameters" />
       <module name="simple" options="-parameters" />
       <module name="students" options="-parameters" />
