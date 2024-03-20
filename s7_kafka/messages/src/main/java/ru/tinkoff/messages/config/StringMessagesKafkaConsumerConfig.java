@@ -12,7 +12,7 @@ import java.util.Map;
 
 @EnableKafka
 @Configuration
-public class KafkaConsumerConfig {
+public class StringMessagesKafkaConsumerConfig {
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, String> stringMessageKafkaListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();

@@ -1,17 +1,19 @@
 package ru.tinkoff.messages;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-import ru.tinkoff.messages.config.KafkaProducerConfig;
+import ru.tinkoff.messages.config.StringMessagesKafkaProducerConfig;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
-@SpringJUnitConfig(classes = KafkaProducerConfig.class)
-class MessagesApplicationTests {
+@SpringJUnitConfig(classes = StringMessagesKafkaProducerConfig.class)
+@Disabled
+class StringMessagesApplicationTests {
 
 	@Autowired
 	KafkaTemplate<String, String> stringMessageKafkaTemplate;

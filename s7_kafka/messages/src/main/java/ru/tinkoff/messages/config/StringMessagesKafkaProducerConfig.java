@@ -10,7 +10,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import java.util.Map;
 
 @Configuration
-public class KafkaProducerConfig {
+public class StringMessagesKafkaProducerConfig {
 
     @Bean
     public KafkaTemplate<String, String> stringMessageKafkaTemplate() {
