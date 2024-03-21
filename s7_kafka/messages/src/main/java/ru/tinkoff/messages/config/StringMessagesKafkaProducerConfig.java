@@ -14,10 +14,14 @@ public class StringMessagesKafkaProducerConfig {
 
     @Bean
     public KafkaTemplate<String, String> stringMessageKafkaTemplate() {
+        //https://docs.confluent.io/platform/current/installation/configuration/producer-configs.html
         return new KafkaTemplate<>(new DefaultKafkaProducerFactory<>(Map.of(
                 ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:29091,localhost:29092,localhost:29093",
                 ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class,
                 ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class
+//                ProducerConfig.ACKS_CONFIG, "all",
+//                ProducerConfig.RETRIES_CONFIG, 3
+//                ProducerConfig.PARTITIONER_CLASS_CONFIG, NamePartitioner.class
         )));
     }
 }
